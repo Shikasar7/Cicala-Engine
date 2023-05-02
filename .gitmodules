@@ -3,7 +3,7 @@
 	url = https://github.com/gabime/spdlog
 [submodule "Cicala/vendor/GLFW"]
 	path = Cicala/vendor/GLFW
-	url = https://github.com/TheCherno/glfw
+	url = https://github.com/Shikasar7/glfw
 [submodule "Cicala/vendor/imgui"]
 	path = Cicala/vendor/imgui
-	url = https://github.com/TheCherno/imgui
+	url = https://github.com/Shikasar7/imgui
