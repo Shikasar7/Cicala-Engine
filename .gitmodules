@@ -7,3 +7,6 @@
 [submodule "Cicala/vendor/imgui"]
 	path = Cicala/vendor/imgui
 	url = https://github.com/Shikasar7/imgui
+[submodule "Cicala/vendor/glm"]
+	path = Cicala/vendor/glm
+	url = https://github.com/g-truc/glm

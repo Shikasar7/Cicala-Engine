@@ -1,5 +1,6 @@
 workspace "Cicala"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -15,16 +16,20 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Cicala/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cicala/vendor/Glad/include"
 IncludeDir["ImGui"] = "Cicala/vendor/imgui"
+IncludeDir["glm"] = "Cicala/vendor/glm"
 
-include "Cicala/vendor/GLFW"
-include "Cicala/vendor/Glad"
-include "Cicala/vendor/imgui"
+group "Dependencies"
+	include "Cicala/vendor/GLFW"
+	include "Cicala/vendor/Glad"
+	include "Cicala/vendor/imgui"
 
+group ""
 
 project "Cicala"
 	location "Cicala"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	pchheader "ccpch.h"
 	pchsource "Cicala/src/ccpch.cpp"
@@ -35,7 +40,11 @@ project "Cicala"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/vendor/glm/glm/**.inl"
+
 	}
 
 	includedirs
@@ -44,7 +53,8 @@ project "Cicala"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -58,7 +68,6 @@ project "Cicala"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -76,26 +85,27 @@ project "Cicala"
 
 	filter "configurations:Debug"
 		defines "CC_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "CC_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CC_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter { "system:Windows", "configurations:Release"}
 		buildoptions "/MT"
 
-project "Sandbox"
+project "Sandbox"  
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -109,7 +119,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Cicala/vendor/spdlog/include",
-		"Cicala/src"
+		"Cicala/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -119,7 +130,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -130,17 +140,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "CC_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "CC_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "CC_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 

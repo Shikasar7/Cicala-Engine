@@ -18,11 +18,11 @@ namespace Cicala {
 		inline unsigned int GetHeight() const override { return m_Data.Height; }
 
 		// Window attributes
-		void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
+		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
-		virtual void* GetNativeWindow() const { return m_Window; }
+		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 	private:
 		virtual void Init(const WindowProps& props);

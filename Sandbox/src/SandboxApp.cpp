@@ -11,13 +11,19 @@ public:
 
 	void OnUpdate() override
 	{
-		CC_INFO("ExampleLayer::Update");
-
+		if (Cicala::Input::IsKeyPressed(CC_KEY_TAB))
+			CC_TRACE("Tab key is pressed(POLL)!");
 	}
 
 	void OnEvent(Cicala::Event& event) override
 	{
-		CC_TRACE("{0}", event);
+		if (event.GetEventType() == Cicala::EventType::KeyPressed)
+		{
+			Cicala::KeyPressedEvent& e = (Cicala::KeyPressedEvent&)event;
+			if (e.GetKeyCode() == CC_KEY_TAB)
+				CC_TRACE("Tab key is pressed!(event)");
+			CC_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

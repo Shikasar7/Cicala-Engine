@@ -10,6 +10,11 @@
 	#error Cicala only support Windows.
 #endif //  CC_PLATFORM_WINDOWS
 
+#ifdef CC_DEBUG
+	#define CC_ENABLE_ASSERTS
+#endif
+
+
 #ifdef CC_ENABLE_ASSERTS
 	#define CC_ASSERT(x, ...) { if(!(x)) {CC_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
 	#define CC_CORE_ASSERT(x, ...) { if(!(x)) {CC_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
