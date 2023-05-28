@@ -28,12 +28,12 @@ namespace Cicala {
 #define CC_CORE_INFO(...)     ::Cicala::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define CC_CORE_WARN(...)     ::Cicala::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define CC_CORE_ERROR(...)    ::Cicala::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define CC_CORE_FATAL(...)    ::Cicala::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define CC_CORE_FATAL(...)    ::Cicala::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // macros for Client Logger
 #define CC_TRACE(...)    ::Cicala::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define CC_INFO(...)     ::Cicala::Log::GetClientLogger()->info(__VA_ARGS__)
 #define CC_WARN(...)     ::Cicala::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define CC_ERROR(...)    ::Cicala::Log::GetClientLogger()->error(__VA_ARGS__)
-#define CC_FATAL(...)    ::Cicala::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define CC_FATAL(...)    ::Cicala::Log::GetClientLogger()->critical(__VA_ARGS__)
 

@@ -1,5 +1,7 @@
 #include <Cicala.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Cicala::Layer
 {
 public:
@@ -13,6 +15,13 @@ public:
 	{
 		if (Cicala::Input::IsKeyPressed(CC_KEY_TAB))
 			CC_TRACE("Tab key is pressed(POLL)!");
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Cicala::Event& event) override
@@ -33,7 +42,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Cicala::ImGuiLayer());
 	}
 
 	~Sandbox()

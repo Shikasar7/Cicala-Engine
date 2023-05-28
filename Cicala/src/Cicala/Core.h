@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef  CC_PLATFORM_WINDOWS
+#if CC_DYNAMIC_LINK
 	#ifdef CC_BUILD_DLL
 		#define CICALA_API __declspec(dllexport)
 	#else
 		#define CICALA_API __declspec(dllimport)
 	#endif // DEBUG
+#else
+	#define CICALA_API
+#endif
 #else
 	#error Cicala only support Windows.
 #endif //  CC_PLATFORM_WINDOWS
@@ -24,6 +28,6 @@
 #endif //like break point and debug
 
 
-#define BIT(x) (1<<x)
+#define BIT(x) (1 << x)
 
 #define CC_BIND_EVENT_FN(fn) std::bind(&fn, this , std::placeholders::_1)

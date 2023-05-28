@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Cicala/Window.h"
+#include "Cicala/Renderer/GraphicsContext.h"
 
-struct GLFWwindow;
+#include <GLFW/glfw3.h>
+
 
 namespace Cicala {
 
@@ -29,6 +31,7 @@ namespace Cicala {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

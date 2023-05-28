@@ -13,9 +13,13 @@ namespace Cicala {
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach();
-		void OnDetach();
-		void OnUpdate();
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnImGuiRender() override;
+
+		void Begin();
+		void End();
+/*
 		void OnEvent(Event& event);
 
 	private:
@@ -27,6 +31,7 @@ namespace Cicala {
 		bool OnKeyPressedEvent(KeyPressedEvent& e);
 		bool OnKeyTypedEvent(KeyTypedEvent& e);
 		bool OnWindowResizeEvent(WindowResizeEvent& e);
+*/
 	private:
 		float m_Time = 0.0f;
 	};

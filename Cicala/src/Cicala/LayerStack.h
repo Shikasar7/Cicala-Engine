@@ -30,8 +30,8 @@ namespace Cicala {
 		std::vector<Layer*>::const_reverse_iterator rend() const { return m_Layers.rend(); }
 	private:
 		std::vector<Layer*> m_Layers;
-		std::vector<Layer*>::iterator m_LayerInsert;
-		//unsigned int m_LayerInsertIndex = 0;
+		//std::vector<Layer*>::iterator m_LayerInsert; It's not good if the whole collection gets moved in memory. this has to be invalidated and redone.
+		unsigned int m_LayerInsertIndex = 0; //Better way is to have a layer insert index.
 	};
 
 }

@@ -27,9 +27,10 @@ group ""
 
 project "Cicala"
 	location "Cicala"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	pchheader "ccpch.h"
 	pchsource "Cicala/src/ccpch.cpp"
@@ -37,14 +38,21 @@ project "Cicala"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "ccpch.h"
+	pchsource "Cicala/src/ccpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
-		"%{prj.name}/vendor/glm/glm/**.inl"
 
+	}
+	
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -67,7 +75,7 @@ project "Cicala"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
+
 		systemversion "latest"
 
 		defines
@@ -86,17 +94,17 @@ project "Cicala"
 	filter "configurations:Debug"
 		defines "CC_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "CC_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "CC_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter { "system:Windows", "configurations:Release"}
 		buildoptions "/MT"
@@ -105,7 +113,8 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -120,6 +129,7 @@ project "Sandbox"
 	{
 		"Cicala/vendor/spdlog/include",
 		"Cicala/src",
+		"Cicala/vendor",
 		"%{IncludeDir.glm}"
 	}
 
@@ -129,7 +139,7 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
+
 		systemversion "latest"
 
 		defines
@@ -141,17 +151,17 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "CC_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "CC_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "CC_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 
 
