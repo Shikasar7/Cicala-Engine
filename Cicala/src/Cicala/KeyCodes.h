@@ -1,7 +1,7 @@
 #pragma once
 
 
-/* Printable keys from glfw3.h */
+/* Printable keycodes from glfw3.h */
 #define CC_KEY_SPACE              32
 #define CC_KEY_APOSTROPHE         39  /* ' */
 #define CC_KEY_COMMA              44  /* , */

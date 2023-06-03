@@ -10,8 +10,8 @@
 #include "Cicala/ImGui/ImGuiLayer.h"
 
 #include "Cicala/Renderer/Shader.h"
-
-
+#include "Cicala/Renderer/Buffer.h"
+#include "Cicala/Renderer/VertexArray.h"
 
 namespace Cicala {
 
@@ -39,8 +39,11 @@ namespace Cicala {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-		std::unique_ptr<Shader> m_Shader;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 
 	private:
 		static Application* s_Instance;
