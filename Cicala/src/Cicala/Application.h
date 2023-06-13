@@ -13,13 +13,15 @@
 #include "Cicala/Renderer/Buffer.h"
 #include "Cicala/Renderer/VertexArray.h"
 
+#include "Cicala/Renderer/OrthographicCamera.h"
+
 namespace Cicala {
 
 	class CICALA_API Application
 	{
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 
@@ -45,6 +47,7 @@ namespace Cicala {
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
 
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
