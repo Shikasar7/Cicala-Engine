@@ -7,17 +7,13 @@
 #include "Events/Event.h"
 #include "Cicala/Events/ApplicationEvent.h"
 
+#include "Cicala/Core/Timestep.h"
+
 #include "Cicala/ImGui/ImGuiLayer.h"
-
-#include "Cicala/Renderer/Shader.h"
-#include "Cicala/Renderer/Buffer.h"
-#include "Cicala/Renderer/VertexArray.h"
-
-#include "Cicala/Renderer/OrthographicCamera.h"
 
 namespace Cicala {
 
-	class CICALA_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -36,18 +32,13 @@ namespace Cicala {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Cicala/Core.h"
+#include "Cicala/Core/Timestep.h"
 #include "Cicala/Events/Event.h"
 
 namespace Cicala {
@@ -13,7 +14,7 @@ namespace Cicala {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender(){}
 
 		virtual void OnEvent(Event& event) {}
