@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Cicala/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cicala/vendor/Glad/include"
 IncludeDir["ImGui"] = "Cicala/vendor/imgui"
 IncludeDir["glm"] = "Cicala/vendor/glm"
+IncludeDir["stb_image"] = "Cicala/vendor/stb_image"
 
 group "Dependencies"
 	include "Cicala/vendor/GLFW"
@@ -45,6 +46,8 @@ project "Cicala"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 
@@ -62,7 +65,8 @@ project "Cicala"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

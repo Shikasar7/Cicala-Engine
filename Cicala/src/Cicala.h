@@ -20,6 +20,7 @@
 
 #include "Cicala/Renderer/Buffer.h"
 #include "Cicala/Renderer/Shader.h"
+#include "Cicala/Renderer/Texture.h"
 #include "Cicala/Renderer/VertexArray.h"
 
 #include "Cicala/Renderer/OrthographicCamera.h"
