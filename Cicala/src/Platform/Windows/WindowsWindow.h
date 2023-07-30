@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cicala/Window.h"
+#include "Cicala/Core/Window.h"
 #include "Cicala/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

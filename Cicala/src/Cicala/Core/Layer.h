@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cicala/Core.h"
+#include "Cicala/Core/Core.h"
 #include "Cicala/Core/Timestep.h"
 #include "Cicala/Events/Event.h"
 

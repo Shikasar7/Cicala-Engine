@@ -1,7 +1,7 @@
 #include "ccpch.h"
 #include "WindowsInput.h"
 
-#include "Cicala/Application.h"
+#include "Cicala/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 

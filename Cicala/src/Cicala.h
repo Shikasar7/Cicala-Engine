@@ -2,20 +2,22 @@
 
 // For use by Cicala applications
 
-#include "Cicala/Application.h"
-#include "Cicala/Layer.h"
-#include "Cicala/Log.h"
+#include "Cicala/Core/Application.h"
+#include "Cicala/Core/Layer.h"
+#include "Cicala/Core/Log.h"
 
 #include "Cicala/Core/Timestep.h"
 
-#include "Cicala/Input.h"
-#include "Cicala/KeyCodes.h"
-#include "Cicala/MouseButtonCodes.h"
+#include "Cicala/Core/Input.h"
+#include "Cicala/Core/KeyCodes.h"
+#include "Cicala/Core/MouseButtonCodes.h"
+#include "Cicala/Renderer/OrthographicCameraController.h"
 
 #include "Cicala/ImGui/ImGuiLayer.h"
 
 // ---Renderer------------------------
 #include "Cicala/Renderer/Renderer.h"
+#include "Cicala/Renderer/Renderer2D.h"
 #include "Cicala/Renderer/RenderCommand.h"
 
 #include "Cicala/Renderer/Buffer.h"
@@ -24,7 +26,3 @@
 #include "Cicala/Renderer/VertexArray.h"
 
 #include "Cicala/Renderer/OrthographicCamera.h"
-// -----------------------------------
-
-//  ---Entry Point -------
-#include "Cicala/EntryPoint.h"

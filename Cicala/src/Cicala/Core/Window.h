@@ -2,7 +2,7 @@
 
 #include "ccpch.h"
 
-#include "Cicala/Core.h"
+#include "Cicala/Core/Core.h"
 #include "Cicala/Events/Event.h"
 
 namespace Cicala {

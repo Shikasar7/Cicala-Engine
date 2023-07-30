@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cicala/Input.h"
+#include "Cicala/Core/Input.h"
 
 namespace Cicala {
 	

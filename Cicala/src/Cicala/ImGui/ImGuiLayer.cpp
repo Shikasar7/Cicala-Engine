@@ -7,7 +7,7 @@
 #include "backends/imgui_impl_opengl3.cpp"
 #include "backends/imgui_impl_glfw.cpp"
 
-#include "Cicala/Application.h"
+#include "Cicala/Core/Application.h"
 
 //TEMPORARY
 #include <GLFW/glfw3.h>

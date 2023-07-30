@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cicala/Core.h"
+#include "Cicala/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>

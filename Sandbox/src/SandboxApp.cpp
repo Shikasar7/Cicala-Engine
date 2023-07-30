@@ -1,4 +1,5 @@
 #include <Cicala.h>
+#include <Cicala/Core/EntryPoint.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -7,13 +8,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public Cicala::Layer
 {
 public:
 	ExampleLayer()
-		:Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
-		m_VertexArray.reset(Cicala::VertexArray::Create());
+		m_VertexArray = Cicala::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -35,7 +38,7 @@ public:
 		indexBuffer.reset(Cicala::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(Cicala::VertexArray::Create());
+		m_SquareVA = Cicala::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -88,7 +91,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Cicala::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Cicala::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -119,69 +122,27 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(Cicala::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
-	
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-			out vec2 v_TexCoord;
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
+		m_FlatColorShader = Cicala::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-			in vec2 v_TexCoord;
-			
-			uniform sampler2D u_Texture;
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader.reset(Cicala::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Cicala::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogoTexture = Cicala::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Cicala::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Cicala::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Cicala::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Cicala::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Cicala::Timestep ts) override
 	{
-		if (Cicala::Input::IsKeyPressed(CC_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (Cicala::Input::IsKeyPressed(CC_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-		if (Cicala::Input::IsKeyPressed(CC_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (Cicala::Input::IsKeyPressed(CC_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (Cicala::Input::IsKeyPressed(CC_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (Cicala::Input::IsKeyPressed(CC_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
+		// Render
 		Cicala::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Cicala::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Cicala::Renderer::BeginScene(m_Camera);
-
+		Cicala::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -198,9 +159,12 @@ public:
 				Cicala::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
-		Cicala::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Cicala::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_ChernoLogoTexture->Bind();
+		Cicala::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
 		// Cicala::Renderer::Submit(m_Shader, m_VertexArray);
@@ -215,24 +179,21 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Cicala::Event& event) override
+	void OnEvent(Cicala::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
 	}
 private:
+	Cicala::ShaderLibrary m_ShaderLibrary;
 	Cicala::Ref<Cicala::Shader> m_Shader;
 	Cicala::Ref<Cicala::VertexArray> m_VertexArray;
 
-	Cicala::Ref<Cicala::Shader> m_FlatColorShader, m_TextureShader;
+	Cicala::Ref<Cicala::Shader> m_FlatColorShader;
 	Cicala::Ref<Cicala::VertexArray> m_SquareVA;
 
-	Cicala::Ref<Cicala::Texture2D> m_Texture;
+	Cicala::Ref<Cicala::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-	Cicala::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Cicala::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.8f, 0.3f, 0.8f };
 };
@@ -242,7 +203,8 @@ class Sandbox : public Cicala::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		// PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()

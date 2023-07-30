@@ -80,7 +80,9 @@
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -108,6 +110,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions>/MT %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -137,6 +140,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -153,32 +157,34 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Cicala\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Cicala.h" />
-    <ClInclude Include="src\Cicala\Application.h" />
-    <ClInclude Include="src\Cicala\Core.h" />
+    <ClInclude Include="src\Cicala\Core\Application.h" />
+    <ClInclude Include="src\Cicala\Core\Core.h" />
+    <ClInclude Include="src\Cicala\Core\EntryPoint.h" />
+    <ClInclude Include="src\Cicala\Core\Input.h" />
+    <ClInclude Include="src\Cicala\Core\KeyCodes.h" />
+    <ClInclude Include="src\Cicala\Core\Layer.h" />
+    <ClInclude Include="src\Cicala\Core\LayerStack.h" />
+    <ClInclude Include="src\Cicala\Core\Log.h" />
+    <ClInclude Include="src\Cicala\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Cicala\Core\Timestep.h" />
-    <ClInclude Include="src\Cicala\EntryPoint.h" />
+    <ClInclude Include="src\Cicala\Core\Window.h" />
     <ClInclude Include="src\Cicala\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Cicala\Events\Event.h" />
     <ClInclude Include="src\Cicala\Events\KeyEvent.h" />
     <ClInclude Include="src\Cicala\Events\MouseEvent.h" />
     <ClInclude Include="src\Cicala\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Cicala\Input.h" />
-    <ClInclude Include="src\Cicala\KeyCodes.h" />
-    <ClInclude Include="src\Cicala\Layer.h" />
-    <ClInclude Include="src\Cicala\LayerStack.h" />
-    <ClInclude Include="src\Cicala\Log.h" />
-    <ClInclude Include="src\Cicala\MouseButtonCodes.h" />
     <ClInclude Include="src\Cicala\Renderer\Buffer.h" />
     <ClInclude Include="src\Cicala\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Cicala\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Cicala\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Cicala\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Cicala\Renderer\Renderer.h" />
     <ClInclude Include="src\Cicala\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Cicala\Renderer\Shader.h" />
     <ClInclude Include="src\Cicala\Renderer\Texture.h" />
     <ClInclude Include="src\Cicala\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Cicala\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -607,14 +613,16 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Cicala\Application.cpp" />
+    <ClCompile Include="src\Cicala\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\Cicala\Core\Application.cpp" />
+    <ClCompile Include="src\Cicala\Core\Layer.cpp" />
+    <ClCompile Include="src\Cicala\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Cicala\Core\Log.cpp" />
     <ClCompile Include="src\Cicala\ImGui\ImGuiBuildcpp.cpp" />
     <ClCompile Include="src\Cicala\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Cicala\Layer.cpp" />
-    <ClCompile Include="src\Cicala\LayerStack.cpp" />
-    <ClCompile Include="src\Cicala\Log.cpp" />
     <ClCompile Include="src\Cicala\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Cicala\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Cicala\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Cicala\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Cicala\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Cicala\Renderer\RendererAPI.cpp" />

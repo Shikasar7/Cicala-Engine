@@ -3,8 +3,8 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Cicala/LayerStack.h"
-#include "Events/Event.h"
+#include "Cicala/Core/LayerStack.h"
+#include "Cicala/Events/Event.h"
 #include "Cicala/Events/ApplicationEvent.h"
 
 #include "Cicala/Core/Timestep.h"
@@ -31,11 +31,13 @@ namespace Cicala {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 

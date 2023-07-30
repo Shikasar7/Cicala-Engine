@@ -57,17 +57,38 @@
     <ClInclude Include="src\Cicala.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Cicala\Application.h">
-      <Filter>src\Cicala</Filter>
+    <ClInclude Include="src\Cicala\Core\Application.h">
+      <Filter>src\Cicala\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Cicala\Core.h">
-      <Filter>src\Cicala</Filter>
+    <ClInclude Include="src\Cicala\Core\Core.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\EntryPoint.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\Input.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\KeyCodes.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\Layer.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\LayerStack.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\Log.h">
+      <Filter>src\Cicala\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Core\MouseButtonCodes.h">
+      <Filter>src\Cicala\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Cicala\Core\Timestep.h">
       <Filter>src\Cicala\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Cicala\EntryPoint.h">
-      <Filter>src\Cicala</Filter>
+    <ClInclude Include="src\Cicala\Core\Window.h">
+      <Filter>src\Cicala\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Cicala\Events\ApplicationEvent.h">
       <Filter>src\Cicala\Events</Filter>
@@ -84,24 +105,6 @@
     <ClInclude Include="src\Cicala\ImGui\ImGuiLayer.h">
       <Filter>src\Cicala\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Cicala\Input.h">
-      <Filter>src\Cicala</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cicala\KeyCodes.h">
-      <Filter>src\Cicala</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cicala\Layer.h">
-      <Filter>src\Cicala</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cicala\LayerStack.h">
-      <Filter>src\Cicala</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cicala\Log.h">
-      <Filter>src\Cicala</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cicala\MouseButtonCodes.h">
-      <Filter>src\Cicala</Filter>
-    </ClInclude>
     <ClInclude Include="src\Cicala\Renderer\Buffer.h">
       <Filter>src\Cicala\Renderer</Filter>
     </ClInclude>
@@ -109,6 +112,9 @@
       <Filter>src\Cicala\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Cicala\Renderer\OrthographicCamera.h">
+      <Filter>src\Cicala\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cicala\Renderer\OrthographicCameraController.h">
       <Filter>src\Cicala\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Cicala\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Cicala\Renderer\VertexArray.h">
       <Filter>src\Cicala\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cicala\Window.h">
-      <Filter>src\Cicala</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1410,10 +1413,20 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Cicala\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Cicala\Application.cpp">
-      <Filter>src\Cicala</Filter>
+    <ClCompile Include="src\Cicala\Core\Application.cpp">
+      <Filter>src\Cicala\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cicala\Core\Layer.cpp">
+      <Filter>src\Cicala\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cicala\Core\LayerStack.cpp">
+      <Filter>src\Cicala\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cicala\Core\Log.cpp">
+      <Filter>src\Cicala\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Cicala\ImGui\ImGuiBuildcpp.cpp">
       <Filter>src\Cicala\ImGui</Filter>
@@ -1421,19 +1434,13 @@
     <ClCompile Include="src\Cicala\ImGui\ImGuiLayer.cpp">
       <Filter>src\Cicala\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Cicala\Layer.cpp">
-      <Filter>src\Cicala</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cicala\LayerStack.cpp">
-      <Filter>src\Cicala</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cicala\Log.cpp">
-      <Filter>src\Cicala</Filter>
-    </ClCompile>
     <ClCompile Include="src\Cicala\Renderer\Buffer.cpp">
       <Filter>src\Cicala\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Cicala\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Cicala\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cicala\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Cicala\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Cicala\Renderer\RenderCommand.cpp">
@@ -1484,5 +1491,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Cicala\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>
